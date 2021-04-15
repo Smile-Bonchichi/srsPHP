@@ -12,6 +12,15 @@ Route::get('/addFood', function () {
     return view('addFood');
 });
 
+Route::get('/editFood', function () {
+    return view('editFood');
+});
+
+Route::get('/deleteFood', function () {
+    return view('deleteFood');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
