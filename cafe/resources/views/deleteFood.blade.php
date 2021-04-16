@@ -7,23 +7,8 @@
     <form action="{{ url('task') }}" method="POST" class="form-horizontal">
       {{ csrf_field() }}
 
-      <h1> <center> Добавления блюда </center> </h1>
+      <h1> <center> Удаление блюда </center> </h1>
 
-      <div class="form-group">
-        <label for="name_dishes" class="col-sm-3 control-label">Название блюда</label>
-
-        <div class="col-sm-2">
-           <input type="text" class="form-control">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="price_dishes" class="col-sm-3 control-label">Цена</label>
-
-        <div class="col-sm-2">
-           <input type="text" class="form-control">
-        </div>
-      </div>
 
       <div class="form-group">
         <label for="category_dishes" class="col-sm-2 control-label">Категория</label>
@@ -34,16 +19,20 @@
         </div>
       </div>
 
-      <form>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="exampleFormControlFile1">Выберите изображение</label>
-          <input type="file" class="form-control-file col-sm-2" id="exampleFormControlFile1">
+      <div class="form-group">
+        <label for="category_dishes" class="col-sm-2 control-label">Блюдо для удаления</label>
+        <div class="col-sm-2">
+          <select class="form-control">
+             
+          </select>
         </div>
-      </form>
+      </div>
+
+      <img src="C:\Users\User\Desktop\1.jpeg" class="img-fluid" alt="Тут должно быть фото">
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-          <button type="button" class="btn btn-primary">Добавить блюдо</button>
+          <button type="button" class="btn btn-danger">Удалить блюдо</button>
         </div>
       </div>
     </form>

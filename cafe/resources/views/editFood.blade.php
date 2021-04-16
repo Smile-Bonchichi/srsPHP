@@ -7,6 +7,8 @@
     <form action="{{ url('task') }}" method="POST" class="form-horizontal">
       {{ csrf_field() }}
 
+      <h1> <center> Изменение блюда </center> </h1>
+
       <div class="form-group">
         <label for="name_dishes" class="col-sm-3 control-label">Название блюда</label>
 
@@ -41,7 +43,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-          <button type="button" class="btn btn-primary">Добавить блюдо</button>
+          <button type="button" class="btn btn-success">Изменить блюдо</button>
         </div>
       </div>
     </form>
