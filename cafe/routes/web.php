@@ -78,6 +78,12 @@ Route::post('/addFood', function (Request $request) {
   return redirect('/addFood');
 });
 
+Route::post('/editFood', function (Request $request) { 
+
+
+  return redirect('/addFood');
+});
+
 //удаление блюда
 Route::delete('/deleteFood/{item}', function (Item $item) {
   $item->delete();
