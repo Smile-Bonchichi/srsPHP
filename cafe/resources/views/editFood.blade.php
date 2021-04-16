@@ -29,21 +29,17 @@
         <label for="category_dishes" class="col-sm-2 control-label">Категория</label>
         <div class="col-sm-2">
           <select class="form-control">
-             
+            @foreach ($categories as $category)
+              <option value="{{ $category->id}}"> {{ $category->category_name}} </option>
+            @endforeach
           </select>
         </div>
       </div>
 
-      <form>
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="exampleFormControlFile1">Выберите изображение</label>
-          <input type="file" class="form-control-file col-sm-2" id="exampleFormControlFile1">
-        </div>
-      </form>
-
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-          <button type="button" class="btn btn-success">Изменить блюдо</button>
+          <button type="button" class="btn btn-outline-success">Изменить блюдо</button>
+          <a href="{{ url('/managerMenu') }}" class="btn btn-outline-info" role="button">Назад</a>
         </div>
       </div>
     </form>

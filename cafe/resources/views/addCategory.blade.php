@@ -17,11 +17,11 @@
         </div>
       </div>
 
-     
       <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
-          <button type="submit" class="btn btn-dark">Добавить категорию</button>
-        </div>
+        <p> <div class="col-sm-offset-3 col-sm-6">
+          <button type="submit" class="btn btn-outline-dark">Добавить категорию</button>
+          <a href="{{ url('/managerMenu') }}" class="btn btn-outline-info" role="button">Назад</a>
+        </div> </p>
       </div>
     </form>
   </div>

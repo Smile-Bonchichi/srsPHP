@@ -74,7 +74,7 @@ Route::post('/addFood', function (Request $request) {
 Route::delete('/deleteFood/{deleteFood}', function (Item $item) {
   $item->delete();
 
-  return redirect('/');
+  return redirect('/deleteFood');
 });
 
 Auth::routes();
