@@ -4,7 +4,7 @@
 
  <div class="panel-body">
 
-    <form action="{{ url('task') }}" method="POST" class="form-horizontal">
+    <form action="{{ url('deleteFood') }}" method="POST" class="form-horizontal">
       {{ csrf_field() }}
 
       <h1> <center> Удаление блюда </center> </h1>
@@ -13,8 +13,10 @@
       <div class="form-group">
         <label for="category_dishes" class="col-sm-2 control-label">Категория</label>
         <div class="col-sm-2">
-          <select class="form-control">
-             
+          <select class="form-control" name="category_id">
+              @foreach ($categories as $category)
+                <option value="{{ $category->id}}"> {{ $category->category_name}} </option>
+              @endforeach
           </select>
         </div>
       </div>
@@ -32,7 +34,9 @@
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-          <button type="button" class="btn btn-danger">Удалить блюдо</button>
+          <button type="submit" class="btn btn-danger">
+                <i class="fa fa-trash"></i> Удалить блюдо
+          </button>
         </div>
       </div>
     </form>
