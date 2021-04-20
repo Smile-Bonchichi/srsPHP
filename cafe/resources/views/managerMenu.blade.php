@@ -6,7 +6,7 @@
         <center> <a href="{{ url('/addCategory') }}" class="list-group-item list-group-item-action badge badge-dark col-sm-2"> <h5> Добавить категорию </h5> </a> </center>
     </div> </p>
 
-	<div class="list-group">
+	<div class="list-group"> qq
 		<center> <a href="{{ url('/addFood') }}" class="list-group-item list-group-item-action badge badge-primary col-sm-2"> <h5> Добавить блюдо </h5> </a> </center>
     </div>
 
