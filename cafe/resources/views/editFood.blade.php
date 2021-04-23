@@ -41,7 +41,7 @@
               </td>
               
               <td>
-                <button type="submit" class="btn btn-outline-success"> Изменить </button>
+                <a href="{{ url('editFoodId/'.$item->id) }}" class="btn btn-outline-success"> Изменить </a>
               </td>
             
             </tr>

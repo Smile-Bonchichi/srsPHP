@@ -21,7 +21,7 @@ Route::get('/addCategory', function () {
 
 //страница добавления блюда
 Route::get('/addFood', function () {
-	$categories = Category::orderBy('created_at', 'asc')->get();
+	  $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
        ->get();
@@ -43,6 +43,22 @@ Route::get('/editFood', function () {
         'items' => $items,
         'categories' => $categories
     ]);
+});
+
+Route::get('/editFoodId/{item}', function (Item $item) {
+  $categories = Category::orderBy('created_at', 'asc')->get();
+    return view('editFoodId', ['item' => $item, 'categories' => $categories]);
+});
+
+Route::post('/editFoodId/{item}', function (Item $item, Request $request) {
+    $item = Item::orderBy('created_at', 'asc')->where('id', $item->id)->first();
+
+    $item->update([
+        'name' => $request->name,
+        'price' => $request->price,
+        'category_name' => $request->category_name
+    ]);
+    return redirect('/editFood');
 });
 
 //страница удаления блюда
@@ -74,12 +90,6 @@ Route::post('/addFood', function (Request $request) {
   $item->price = $request->price;
   $item->category_id = $request->category_id;
   $item->save();
-
-  return redirect('/addFood');
-});
-
-Route::post('/editFood', function (Request $request) { 
-
 
   return redirect('/addFood');
 });
