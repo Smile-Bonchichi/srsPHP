@@ -4,13 +4,18 @@
 
     <div class="panel-body">
 
+        <div class="card-body d-flex">
+            <div class="flex-fill"> <h1> <center> Изменение блюда </center> </h1> </div>
+            <h1> <a href="{{ url('/managerMenu') }}" class="btn btn-outline-info pull-center" role="button">Назад</a> </h1>
+        </div>
+
         <form action="{{ url('editFoodId/'.$item->id) }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
             <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Название</label>
+                <label for="task" class="col-sm-3 control-label">Название блюда</label>
 
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <input type="text" name="name" id="task-name" class="form-control" value="{{ $item->name }}">
                 </div>
             </div>
@@ -18,18 +23,10 @@
             <div class="form-group">
                 <label for="task" class="col-sm-3 control-label">Цена</label>
 
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <input type="number" name="price" id="task-name" class="form-control" value="{{ $item->price }}">
                 </div>
             </div>
-
-<!--             <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Категория</label>
-
-                <div class="col-sm-6">
-                    <input type="text" name="text" class="form-control" value="{{ $item->category_name }}">
-                </div>
-            </div> -->
 
             <div class="form-group">
                 <label for="category_dishes" class="col-sm-2 control-label">Категория</label>
@@ -44,9 +41,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> Изменить
-                    </button>
+                    <button type="submit" class="btn btn-success"> Изменить </button>
                 </div>
             </div>
         </form>

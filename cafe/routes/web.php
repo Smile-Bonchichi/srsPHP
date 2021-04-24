@@ -45,6 +45,7 @@ Route::get('/editFood', function () {
     ]);
 });
 
+//страница изменения блюда
 Route::get('/editFoodId/{item}', function (Item $item) {
   $categories = Category::orderBy('created_at', 'asc')->get();
     return view('editFoodId', ['item' => $item, 'categories' => $categories]);
@@ -56,7 +57,7 @@ Route::post('/editFoodId/{item}', function (Item $item, Request $request) {
     $item->update([
         'name' => $request->name,
         'price' => $request->price,
-        'category_name' => $request->category_name
+        'category_id' => $request->category_id
     ]);
     return redirect('/editFood');
 });
