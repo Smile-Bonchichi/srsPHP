@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Cafe') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,13 @@
     
     <!-- Styles -->
     <link href="{{ asset('\css/app.css') }}" rel="stylesheet">
+    <style>
+        html, body {
+            background-image: url(https://krot.info/uploads/posts/2020-01/1580386538_1-p-foni-dlya-menyu-v-vk-3.jpg);
+            background-size: cover;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

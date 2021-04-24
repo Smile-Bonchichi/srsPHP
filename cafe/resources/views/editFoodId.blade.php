@@ -24,7 +24,7 @@
                 <label for="task" class="col-sm-3 control-label">Цена</label>
 
                 <div class="col-sm-2">
-                    <input type="number" name="price" id="task-name" class="form-control" value="{{ $item->price }}">
+                    <input type="text" name="price" id="task-name" class="form-control" value="{{ $item->price }}">
                 </div>
             </div>
 

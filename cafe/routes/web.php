@@ -45,7 +45,7 @@ Route::get('/editFood', function () {
     ]);
 });
 
-//страница изменения блюда
+//страница изменения блюда ID
 Route::get('/editFoodId/{item}', function (Item $item) {
   $categories = Category::orderBy('created_at', 'asc')->get();
     return view('editFoodId', ['item' => $item, 'categories' => $categories]);
@@ -70,6 +70,19 @@ Route::get('/deleteFood', function () {
        ->get();
 
     return view('deleteFood', [
+        'items' => $items,
+        'categories' => $categories
+    ]);
+});
+
+//страница меню
+Route::get('/viewMenu', function () {
+    $categories = Category::orderBy('created_at', 'asc')->get();
+    $items = Item::select('*')
+       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+       ->get();
+
+    return view('viewMenu', [
         'items' => $items,
         'categories' => $categories
     ]);
