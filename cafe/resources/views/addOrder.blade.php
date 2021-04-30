@@ -5,7 +5,7 @@
   <div class="panel-body">
 
     <div class="card-body d-flex">
-      <div class="flex-fill"> <h1> <center> Просмотр меню </center> </h1> </div>
+      <div class="flex-fill"> <h1> <center> Оформление заказа </center> </h1> </div>
       <h1> <a href="{{ url('/waiterMenu') }}" class="btn btn-outline-info pull-center" role="button">Назад</a> </h1>
     </div>
   
@@ -48,9 +48,11 @@
               
               </tbody>
             </table>
+            
             <div class="col-md-6 float-right">
               <a href=" " class="btn btn-primary float-right" role="button"> Оформить заказ </a>
             </div>
+          
           </div>
         </div>
       @endif

@@ -148,6 +148,11 @@ Route::get('/addOrder', function () {
     ]);
 });
 
+//оформление заказа
+Route::post('/addOrder', function (Request $request) { 
+
+    return redirect('/addOrder');
+});
 
 //                                                 КУХНЯ
 //страница Меню кухни
