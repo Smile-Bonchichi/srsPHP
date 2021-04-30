@@ -3,10 +3,20 @@
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
+use App\User;
+use App\Status;
 
 //основная страница
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/home', function () {
+  if(Auth::user()->role == 'Manager') {
+     return view('managerMenu');
+  } elseif (Auth::user()->role == 'Kitchen') {
+      return redirect('kitchenMenu');
+  }
 });
 
 //страница менеджера
@@ -17,6 +27,19 @@ Route::get('/managerMenu', function () {
 //страница добавления категории
 Route::get('/addCategory', function () {
     return view('addCategory');
+});
+
+//страница меню
+Route::get('/viewMenu', function () {
+    $categories = Category::orderBy('created_at', 'asc')->get();
+    $items = Item::select('*')
+       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+       ->get();
+
+    return view('viewMenu', [
+        'items' => $items,
+        'categories' => $categories
+    ]);
 });
 
 //страница добавления блюда
@@ -51,6 +74,7 @@ Route::get('/editFoodId/{item}', function (Item $item) {
     return view('editFoodId', ['item' => $item, 'categories' => $categories]);
 });
 
+//изменение блюда
 Route::post('/editFoodId/{item}', function (Item $item, Request $request) {
     $item = Item::orderBy('created_at', 'asc')->where('id', $item->id)->first();
 
@@ -70,19 +94,6 @@ Route::get('/deleteFood', function () {
        ->get();
 
     return view('deleteFood', [
-        'items' => $items,
-        'categories' => $categories
-    ]);
-});
-
-//страница меню
-Route::get('/viewMenu', function () {
-    $categories = Category::orderBy('created_at', 'asc')->get();
-    $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
-
-    return view('viewMenu', [
         'items' => $items,
         'categories' => $categories
     ]);
@@ -115,6 +126,27 @@ Route::delete('/deleteFood/{item}', function (Item $item) {
   return redirect('/deleteFood');
 });
 
+//страница кухни
+Route::get('/kitchenMenu', function () {
+    $categories = Category::orderBy('created_at', 'asc')->get();
+    $items = Item::select('*')
+       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+       ->get();
+
+    return view('kitchenMenu', [
+        'items' => $items,
+        'categories' => $categories
+    ]);
+});
+
+Route::post('/kitchenMenu', function (Request $request) { 
+  $item = new Status;
+  $item->name = $request->name;
+  $item->save();
+
+  return redirect('/kitchenMenu');
+});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
