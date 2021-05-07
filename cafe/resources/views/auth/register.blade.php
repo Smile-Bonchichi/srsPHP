@@ -75,7 +75,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-5">
                                 <button type="submit" class="btn btn-danger">
-                                    {{ __('Зарегистрироваться в ад') }}
+                                    {{ __('Зарегистрироваться') }}
                                 </button>
                             </div>
                         </div>
