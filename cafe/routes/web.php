@@ -13,12 +13,12 @@ Route::get('/', function () {
 
 //основная страница с регистрацией
 Route::get('/home', function () {
-  if(Auth::user()->role == 'Manager') {
-     return view('managerMenu');
-  } elseif (Auth::user()->role == 'Kitchen') {
-      return redirect('kitchenMenu');
-  }
-  return redirect('waiterMenu');
+    if (Auth::user()->role == 'Manager') {
+        return view('managerMenu');
+    } elseif (Auth::user()->role == 'Kitchen') {
+        return redirect('kitchenMenu');
+    }
+    return redirect('waiterMenu');
 });
 
 Auth::routes();
@@ -32,8 +32,8 @@ Route::get('/managerMenu', function () {
 Route::get('/viewMenu', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('viewMenu', [
         'items' => $items,
@@ -47,20 +47,20 @@ Route::get('/addCategory', function () {
 });
 
 //добавление категории
-Route::post('/addCategory', function (Request $request) { 
-  $category = new Category;
-  $category->category_name = $request->name_category;
-  $category->save();
+Route::post('/addCategory', function (Request $request) {
+    $category = new Category;
+    $category->category_name = $request->name_category;
+    $category->save();
 
-  return redirect('/addCategory');
+    return redirect('/addCategory');
 });
 
 //страница добавления блюда
 Route::get('/addFood', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('addFood', [
         'items' => $items,
@@ -69,22 +69,22 @@ Route::get('/addFood', function () {
 });
 
 //добавление блюда
-Route::post('/addFood', function (Request $request) { 
-  $item = new Item;
-  $item->name = $request->name_food;
-  $item->price = $request->price;
-  $item->category_id = $request->category_id;
-  $item->save();
+Route::post('/addFood', function (Request $request) {
+    $item = new Item;
+    $item->name = $request->name_food;
+    $item->price = $request->price;
+    $item->category_id = $request->category_id;
+    $item->save();
 
-  return redirect('/addFood');
+    return redirect('/addFood');
 });
 
 //страница изменения блюда
 Route::get('/editFood', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('editFood', [
         'items' => $items,
@@ -94,7 +94,7 @@ Route::get('/editFood', function () {
 
 //страница изменения блюда ID
 Route::get('/editFoodId/{item}', function (Item $item) {
-  $categories = Category::orderBy('created_at', 'asc')->get();
+    $categories = Category::orderBy('created_at', 'asc')->get();
     return view('editFoodId', ['item' => $item, 'categories' => $categories]);
 });
 
@@ -114,8 +114,8 @@ Route::post('/editFoodId/{item}', function (Item $item, Request $request) {
 Route::get('/deleteFood', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('deleteFood', [
         'items' => $items,
@@ -125,9 +125,9 @@ Route::get('/deleteFood', function () {
 
 //удаление блюда
 Route::delete('/deleteFood/{item}', function (Item $item) {
-  $item->delete();
+    $item->delete();
 
-  return redirect('/deleteFood');
+    return redirect('/deleteFood');
 });
 
 //                                                 ОФИЦИАНТ
@@ -136,11 +136,12 @@ Route::get('/waiterMenu', function () {
     return view('waiterMenu');
 });
 
+//страница меню официанта
 Route::get('/addOrder', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('addOrder', [
         'items' => $items,
@@ -149,18 +150,15 @@ Route::get('/addOrder', function () {
 });
 
 //оформление заказа
-Route::post('/addOrder', function (Request $request) { 
-
-    return redirect('/addOrder');
-});
+Route::post('/addOrder/add/{id}', 'OrderController@orderAdd')->name('addOrder');
 
 //                                                 КУХНЯ
 //страница Меню кухни
 Route::get('/kitchenMenu', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-       ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
-       ->get();
+        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->get();
 
     return view('kitchenMenu', [
         'items' => $items,
@@ -168,10 +166,10 @@ Route::get('/kitchenMenu', function () {
     ]);
 });
 
-Route::post('/kitchenMenu', function (Request $request) { 
-  $item = new Status;
-  $item->name = $request->name;
-  $item->save();
+Route::post('/kitchenMenu', function (Request $request) {
+    $item = new Status;
+    $item->name = $request->name;
+    $item->save();
 
-  return redirect('/kitchenMenu');
+    return redirect('/kitchenMenu');
 });

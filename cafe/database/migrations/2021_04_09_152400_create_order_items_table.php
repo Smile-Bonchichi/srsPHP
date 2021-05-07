@@ -14,6 +14,7 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer('order_id')->index();
             $table->integer('item_id')->index();
             $table->timestamps();
