@@ -14,29 +14,29 @@
 
         <form action="{{ url('kitchenMenu') }}" method="POST" class="form-horizontal"> {{ csrf_field() }} </form>
 
-        @if (count($items) > 0)
+    
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table table-striped">
 
                         <thead>
-                        <th>Название блюда</th>
-                        <th>Категория</th>
+                        <th>Номер заказа</th>
+                        <th>Номер заказа</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         </thead>
 
                         <tbody>
-                        @foreach ($items as $item)
+                        @foreach ($orders as $order)
 
                             <tr>
 
                                 <td class="table-text">
-                                    <div>{{ $item->name }}</div>
+                                    <div>{{ $order->id }}</div>
                                 </td>
 
                                 <td class="table-text text-left">
-                                    <div>{{ $item->category_name }}</div>
+                                    <div>{{ $order->table }}</div>
                                 </td>
 
                                 <td>
@@ -54,7 +54,7 @@
                     </table>
                 </div>
             </div>
-            @endif
+            
             </form>
     </div>
 @endsection

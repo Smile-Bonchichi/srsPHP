@@ -5,6 +5,8 @@ use App\Category;
 use App\Item;
 use App\User;
 use App\Status;
+use App\Order;
+use App\Order_Item;
 
 //основная страница без регистрации
 Route::get('/', function () {
@@ -152,24 +154,26 @@ Route::get('/addOrder', function () {
 //оформление заказа
 Route::post('/addOrder/add/{id}', 'OrderController@orderAdd')->name('addOrder');
 
-//                                                 КУХНЯ
-//страница Меню кухни
-Route::get('/kitchenMenu', function () {
-    $categories = Category::orderBy('created_at', 'asc')->get();
+//
+Route::get('/Order', function () {
+    $item_order = Order_Item::orderBy('created_at', 'asc')->get();
     $items = Item::select('*')
-        ->leftJoin('categories', 'items.category_id', '=', 'categories.category_id')
+        ->leftJoin('item_order', 'items.id', '=', 'item_order.order_id')
         ->get();
 
-    return view('kitchenMenu', [
+    return view('Order', [
         'items' => $items,
-        'categories' => $categories
+        'item_order' => $item_order
     ]);
 });
 
-Route::post('/kitchenMenu', function (Request $request) {
-    $item = new Status;
-    $item->name = $request->name;
-    $item->save();
+//                                                 КУХНЯ
+//страница Меню кухни
+Route::get('/kitchenMenu', function () {
+    $orders = Order::get();
+    return view('kitchenMenu', compact('orders'));
+});
 
-    return redirect('/kitchenMenu');
+Route::post('/kitchenMenu', function (Request $request) {
+    
 });
