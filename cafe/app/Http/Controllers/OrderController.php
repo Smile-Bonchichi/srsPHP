@@ -20,6 +20,6 @@ class OrderController extends Controller
         }
         $order->items()->attach($itemId);
 
-        return view('addFood', compact('order'));
+        return view('addOrder', compact('order'));
     }
 }
